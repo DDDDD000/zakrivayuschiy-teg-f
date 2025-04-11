@@ -10,7 +10,321 @@
 
 */
 
+
+
 .page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   min-inline-size: 320px;
   min-block-size: 100dvb;
+  font-family: var(--main-font), sans-serif;
+  font-variation-settings: "wght" var(--main-text-font-weight);
+  background-image: repeating-linear-gradient(to right, #d3d3d3 0px, #d3d3d3 2px, transparent 2px, transparent 4px),
+    repeating-linear-gradient(to bottom, #d3d3d3 0px, #d3d3d3 2px, transparent 2px, transparent 4px),
+    linear-gradient(to bottom, #e7e7e7 0%, #1a1a1a 100%);
+  background-size: cover;
+}
+
+/* Общие классы */
+
+.button {
+  position: relative;
+  font-family: var(--accent-font, sans-serif);
+  font-variation-settings: "wght" var(--main-text-font-weight);
+  background-color: var(--bg-color);
+}
+
+.button:focus-visible {
+  outline: none;
+  box-shadow: 2px 2px var(--accent-color);
+  transition: box-shadow 0.3s ease;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease-in-out;
+  z-index: 1;
+}
+
+.button:hover::before {
+  transform: scaleX(1);
+}
+
+.button__text {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  mix-blend-mode: difference;
+}
+
+.main-text {
+  font-size: var(--main-text-font-size);
+  line-height: 21px;
+  min-width: 646px;
+}
+
+.main-text:first-of-type {
+  padding-bottom: 27px;
+}
+
+.main-text:last-of-type {
+  padding-bottom: 25px;
+}
+
+/* Секция HEADER */
+
+.header {
+  text-align: center;
+  font-family: var(--accent-font, sans-serif);
+  width: clamp(23.4375rem, 16.2594rem + 30.5451vw, 43.75rem);
+  padding-block: clamp(7.5rem, 7.3233rem + 0.7519vw, 8rem);
+  padding-inline: clamp(0.875rem, -1.4772rem + 10.0094vw, 7.53125rem);
+  margin-block: 100px;
+  text-transform: uppercase;
+  border: 2px solid var(--border-color);
+}
+
+.header__title {
+  font-size: clamp(3.0625rem, 2.7091rem + 1.5038vw, 4.0625rem);
+  margin-block-end: 20px;
+}
+
+.header__sub-title {
+  font-size: clamp(0.875rem, 0.6762rem + 0.8459vw, 1.4375rem);
+}
+
+@media (width <=376px) {
+  .header-mobile {
+    width: 100%;
+  }
+}
+
+/* Секция MAIN */
+
+.main {
+  background-color: var(--bg-color);
+}
+
+.card {
+  inline-size: clamp(23.4375rem, 16.3477rem + 30.1692vw, 43.5rem);
+  justify-self: center;
+  margin-block-end: 50px;
+  border: 2px solid var(--border-color);
+}
+
+.card__title {
+  font-size: var(--card-title-font-size);
+  font-variation-settings: "wght" var(--title-text-font-weight);
+  border-bottom: 2px solid var(--border-color);
+  padding: 3px 24px 3px 10px;
+  min-height: 33px;
+}
+
+.image-container {
+  position: relative;
+}
+
+.card__image {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  max-block-size: 100%;
+  object-fit: cover;
+  min-height: 375px;
+}
+
+.image-label {
+  font-family: var(--accent-font);
+  font-size: 0.875rem;
+  line-height: 100%;
+  mix-blend-mode: hard-light;
+  text-shadow:
+    -1px 0 var(--text-stroke-color),
+    0 1px var(--text-stroke-color),
+    1px 0 var(--text-stroke-color),
+    0 -1px var(--text-stroke-color);
+  color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  inset-block-start: 26px;
+  inset-inline-end: 23px;
+}
+
+.card__like-section-container {
+  border-top: 2px solid var(--border-color);
+  padding: 25px;
+  padding-right: 26px;
+  background-color: var(--bg-color);
+}
+
+@supports((text-stroke: 1px var(--text-stroke-color)) or (-webkit-text-stroke: 1px var(--text-stroke-color))) {
+  .image-label {
+    -webkit-text-stroke: 1px var(--text-stroke-color);
+    text-stroke: 1px var(--text-stroke-color);
+    text-shadow: none;
+  }
+}
+
+.like-container {
+  display: flex;
+  justify-self: end;
+  align-items: center;
+  gap: 6px;
+}
+
+.card__icon-button {
+  width: 39px;
+  height: 37px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  align-self: center;
+}
+
+.card__icon-button:focus {
+  outline: none;
+}
+
+.card__icon-button:focus-visible {
+  outline: 2px solid var(--accent-color);
+  transition: outline 0.3s ease;
+}
+
+.card__like-button {
+  border: 2px solid var(--border-color);
+  font-size: 0.875rem;
+  line-height: 90%;
+  padding: 12.5px 37px;
+  max-width: 130px;
+}
+
+.button__text {
+  font-size: 0.875rem;
+  line-height: 90%;
+}
+
+@media (width <=376px) {
+  .main-text {
+    min-width: 321px;
+  }
+
+  .image-label {
+    inset-block-start: 27px;
+    inset-inline-end: 12px;
+  }
+}
+
+/* Фильтры для Images */
+
+.image-saturated {
+  filter: saturate(30%);
+}
+
+.image-neon {
+  filter: brightness(1.3) contrast(1.8);
+}
+
+.image-tinted {
+  filter: sepia(100%) hue-rotate(200deg) saturate(600%);
+}
+
+.image-reverted {
+  filter: invert(100%);
+}
+
+.image-retro {
+  filter: sepia(100%);
+}
+
+.image-blured {
+  filter: blur(5px);
+}
+
+.image-warmed {
+  filter: sepia(30%) saturate(120%) hue-rotate(-10deg) brightness(1.05);
+}
+
+@media (width <=376px) {
+  .card-mobile {
+    width: 100%;
+  }
+}
+
+.save-memories {
+  margin-block-end: 103px;
+  background-color: var(--bg-color);
+  width: 100%;
+}
+
+.save-memories__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 21px 14px 13px;
+  border: 2px solid var(--border-color);
+  justify-self: center;
+}
+
+.save-memories__floppy {
+  block-size: 21px;
+  inline-size: 21px;
+}
+
+.dialog {
+  position: fixed;
+  inset: 0;
+  padding: 30px;
+  max-inline-size: 353px;
+}
+
+.dialog__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+@media (width <=376px) {
+  .save-memories__button {
+    flex-direction: column;
+  }
+}
+
+.dialog__floppy {
+  min-width: 39px;
+  block-size: 39px;
+}
+
+.dialog__title {
+  font-family: var(--accent-font);
+  font-size: 0.875rem;
+  line-height: 150%;
+  max-inline-size: 234px;
+  text-transform: uppercase;
+}
+
+.dialog__end-button {
+  padding: 9px 132.5px;
+  text-transform: uppercase;
+  border: 2px solid var(--border-color);
+  max-inline-size: 293px;
+  color: var(--accent-color);
+}
+
+.dialog[open]::backdrop {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.page:has(.dialog[open]) {
+  overflow: hidden;
 }
