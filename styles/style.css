@@ -64,6 +64,8 @@
   z-index: 2;
   color: #fff;
   mix-blend-mode: difference;
+  font-size: 0.875rem;
+  line-height: 90%;
 }
 
 .main-text {
@@ -204,11 +206,6 @@
   line-height: 90%;
   padding: 12.5px 37px;
   max-width: 130px;
-}
-
-.button__text {
-  font-size: 0.875rem;
-  line-height: 90%;
 }
 
 @media (width <=376px) {
